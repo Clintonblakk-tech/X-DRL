@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use X-DRL, please cite the software release and its associated software paper when available."
+title: "X-DRL: Explainable Deep Reinforcement Learning for Sensor Placement in Water Distribution Networks"
+type: software
+version: "1.0.0"
+repository-code: "https://github.com/Clintonblakk-tech/X-DRL"
+authors:
+  - family-names: Blakk
+    given-names: Clinton Jengoa
+    orcid: "https://orcid.org/0009-0001-5978-1046"
+  - family-names: Nnulu
+    given-names: Nnamdi
+    orcid: "https://orcid.org/0000-0003-2607-7439"
+  - family-names: Akinlabi
+    given-names: Esther Titilayo
+    orcid: "https://orcid.org/0000-0002-9680-5510"
+license: "MIT"
+# Add a DOI only after a versioned release has been archived and the DOI is verified.
