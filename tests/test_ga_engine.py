@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
+# WNTR is only needed when constructing a real network; stub import for unit tests.
 if "wntr" not in sys.modules:
     wntr_stub = types.ModuleType("wntr")
     wntr_stub.network = types.SimpleNamespace()
@@ -16,6 +17,8 @@ if "wntr" not in sys.modules:
 
 import config
 import ga_engine
+from unittest.mock import patch
+import types
 
 
 class TestGAConfigurationAndRepair(unittest.TestCase):
@@ -60,7 +63,7 @@ class TestGAConfigurationAndRepair(unittest.TestCase):
             )
         self.assertEqual(len(result), 4)
         self.assertEqual(len(result[3]), 2)
-        self.assertEqual(len(set(result[3])), 2)
+        self.assertEqual(len(set(result[3]), 2))
 
 
 if __name__ == "__main__":
