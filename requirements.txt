@@ -1,0 +1,9 @@
+# Provisional dependency list; versions will be pinned after clean-environment validation.
+numpy
+pandas
+torch
+networkx
+wntr
+matplotlib
+scipy
+shap
