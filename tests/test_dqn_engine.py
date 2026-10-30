@@ -34,7 +34,7 @@ class TestDQNRegression(unittest.TestCase):
         masked = mask_invalid_actions(q, states)
         self.assertEqual(int(masked[0].argmax()), 1)
         self.assertEqual(int(masked[1].argmax()), 0)
-        self.assertAlmostEqual(float(q[0, 0]), 0.1)
+        self.assertAlmostEqual(float(q[0, 0]), 0.1)  # original tensor unchanged
 
     def test_all_selected_actions_are_masked(self):
         q = torch.tensor([[1., 2.]])
