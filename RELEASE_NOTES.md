@@ -66,3 +66,33 @@
 No full 60-run benchmark was executed during this validation phase. Historical experimental results were preserved. Reduced-size integration smoke tests and the Windows Net3 EPANET smoke test must not be represented as full experimental reproduction or independent validation of leak-detection and contamination-detection performance.
 
 The workspace remains a corrected research-software working revision and is not yet a finalized public release.
+
+## Final repository-integrity and release-scope update — 2026-10-31
+
+### Current checksum manifest
+- The earlier 18-entry checksum verification recorded above was an intermediate repository-inventory checkpoint and remains part of the historical validation record.
+- The current release-validation branch contains 22 tracked files, including `SHA256SUMS.txt`, and 21 payload files covered by the checksum manifest.
+- Independently verified all 21 SHA-256 entries against the current tracked file contents.
+- Confirmed that all 21 tracked payload paths are represented, with no missing or unexpected manifest entries and no hash mismatches.
+- The historical checksum manifest in the research workspace was preserved unchanged.
+
+### Benchmark-input distribution decision
+- The first public release is scoped as a code-only release. The Net3, Hanoi, and C-Town `.inp` benchmark inputs are excluded from the repository and release archive.
+- Net3 has an identified upstream MIT licensing basis, subject to appropriate attribution and notices, but is deliberately excluded from this initial release.
+- Redistribution permission and/or exact source-version provenance for Hanoi and C-Town remain unresolved. Their inclusion requires further verification.
+- Users must obtain benchmark inputs separately and comply with the applicable source terms.
+
+### Author and citation metadata
+- The repository author order identifies Clinton Jengoa Blakk as first and corresponding author, followed by Nnamdi Nnulu and Esther Titilayo Akinlabi.
+- Corresponding-author contact details are to be supplied through the journal submission metadata.
+- The citation metadata identifies version 1.0.0; a persistent archival DOI remains pending.
+
+### Remaining release gates
+- Complete the final repository and citation metadata review.
+- Complete the final manuscript-to-software consistency review.
+- Obtain the required review and approval of pull request #1 before merging.
+- Create and verify the versioned public release and its archival DOI.
+- macOS and CUDA validation remain outside the completed validation scope.
+
+### Experimental scope clarification
+The checksum verification establishes file integrity, not experimental reproducibility. The Linux and Windows validation evidence remains limited to the environments, regression tests, and smoke tests documented above. No full historical 60-run benchmark was rerun, and no claim of full independent reproduction or validated leak- and contamination-detection performance is made.
