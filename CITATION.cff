@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use X-DRL, please cite the software release and its associated software paper when available."
-title: "X-DRL: Explainable Deep Reinforcement Learning for Sensor Placement in Water Distribution Networks"
+title: "X-DRL: A Python Framework for Deep Reinforcement Learning-Based Sensor Placement in Water Distribution Networks"
 type: software
-version: "1.0.0"
+version: "1.0.1"
 repository-code: "https://github.com/Clintonblakk-tech/X-DRL"
 authors:
   - family-names: Blakk
