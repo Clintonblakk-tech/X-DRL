@@ -6,7 +6,7 @@
    ORCID: https://orcid.org/0009-0001-5978-1046  
    Department of Electrical and Electronic Engineering Science, University of Johannesburg, Johannesburg, South Africa.
 
-2. **Nnamdi Nnulu**  
+2. **Nnamdi Nwulu**  
    ORCID: https://orcid.org/0000-0003-2607-7439  
    Department of Electrical and Electronic Engineering Science, University of Johannesburg, Johannesburg, South Africa.
 
@@ -19,7 +19,7 @@ The author order and corresponding-author designation reflect the author metadat
 ## CRediT contributions
 
 - **Clinton Jengoa Blakk:** Conceptualization, Methodology, Software, Investigation, Data curation, Formal analysis, Validation, Visualization, Writing – original draft, and Project administration.
-- **Nnamdi Nnulu:** Supervision, Conceptualization, and Writing – review & editing.
+- **Nnamdi Nwulu:** Supervision, Conceptualization, and Writing – review & editing.
 - **Esther Titilayo Akinlabi:** Supervision, Conceptualization, and Writing – review & editing.
 
 These roles were recorded as approved by the authors for the manuscript.
