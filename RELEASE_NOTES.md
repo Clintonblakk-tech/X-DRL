@@ -19,6 +19,14 @@
 - Confirmed that `pip check` reported no broken requirements.
 - Recorded a separate Windows WNTR import restriction associated with Windows Code Integrity Application Control. Smart App Control was not disabled.
 
+### Pinned Linux CPU environment — Python 3.12
+
+- Added `requirements-linux-cpu-py312.in` as the direct-dependency input and `requirements-linux-cpu-py312.lock.txt` as the generated, hash-locked environment.
+- The lock targets Linux x86-64 / `x86_64-unknown-linux-gnu` with CPU-only PyTorch and includes both the PyPI index and the official PyTorch CPU wheel index.
+- Resolved and locked 33 packages, including transitive dependencies. The direct dependency pins are NumPy 2.5.4, pandas 3.1.0, PyTorch 2.15.0+cpu, NetworkX 3.7, WNTR 1.5.0, Matplotlib 3.11.2, SciPy 1.18.1, and SHAP 0.54.1.
+- Installed the hash-locked requirements into a fresh, isolated Python 3.12.16 environment; the existing validated development environment was not replaced.
+- The clean-environment verification is scoped to this Linux CPU platform. The general `requirements.txt` remains unpinned for other platforms and CUDA configurations; a cross-platform dependency matrix has not been established.
+
 ### Software verification
 - Python compilation completed successfully.
 - All 15 regression tests passed.
@@ -43,7 +51,7 @@
 - Confirmed that all three software copyright holders approved the MIT licence already published in the repository.
 
 ### Outstanding release requirements
-- Dependency version pinning and environment specification.
+- Validation of additional platform-specific environments (including Windows and CUDA configurations); the general `requirements.txt` remains unpinned.
 - Final benchmark-input redistribution and attribution decisions.
 - Final repository and citation metadata review.
 - Versioned archival release and persistent DOI.
