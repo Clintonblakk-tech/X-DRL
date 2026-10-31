@@ -21,7 +21,30 @@ The GA configuration records the effective historical settings: population 100, 
 
 ## Installation
 
-Use a clean Python 3.12 environment. Install the declared dependencies:
+### Linux / WSL2: pinned CPU environment (Python 3.12)
+
+A hash-locked environment is provided for Linux x86-64 with Python 3.12 and CPU-only PyTorch. This is the clean environment configuration that was installed and tested during release preparation. It is platform-specific; do not use it as a Windows, macOS, or CUDA-enabled installation specification.
+
+Install [uv](https://docs.astral.sh/uv/) first, then run from the repository root:
+
+```bash
+uv venv .venv --python 3.12
+uv pip install --python .venv/bin/python --require-hashes -r requirements-linux-cpu-py312.lock.txt
+```
+
+The lock file includes the PyPI index and the official PyTorch CPU wheel index. It pins direct and transitive dependencies and includes hashes. The corresponding direct-dependency input is `requirements-linux-cpu-py312.in`; the lock was generated with uv for Python 3.12 on `x86_64-unknown-linux-gnu`.
+
+Verify the installation:
+
+```bash
+.venv/bin/python -m pip check
+.venv/bin/python -m compileall -q src benchmarks tests
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
+```
+
+### Other platforms / general installation
+
+For environments not covered by the Linux CPU lock (including Windows, macOS, and CUDA-enabled PyTorch), use a clean Python 3.12 environment and the provisional declarations:
 
 ```bash
 python -m venv .venv
@@ -31,7 +54,7 @@ python -m pip install -r requirements.txt
 python -m pip check
 ```
 
-The dependency declarations remain provisional and unpinned. Exact dependency pinning and a platform-aware environment specification remain release-preparation tasks.
+The general `requirements.txt` remains unpinned. The separate Linux CPU lock improves reproducibility for its stated platform but does not establish a tested cross-platform dependency matrix.
 
 ## Tests
 
