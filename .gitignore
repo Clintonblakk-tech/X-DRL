@@ -7,3 +7,10 @@ results/
 *.pth
 *.npz
 .ipynb_checkpoints/
+
+# Temporary validation environments and EPANET smoke-test files
+.venv_lockcheck/
+.venv_lockfinal/
+temp.bin
+temp.inp
+temp.rpt
