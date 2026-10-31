@@ -83,7 +83,7 @@ The workspace remains a corrected research-software working revision and is not 
 - Users must obtain benchmark inputs separately and comply with the applicable source terms.
 
 ### Author and citation metadata
-- The repository author order identifies Clinton Jengoa Blakk as first and corresponding author, followed by Nnamdi Nnulu and Esther Titilayo Akinlabi.
+- The repository author order identifies Clinton Jengoa Blakk as first and corresponding author, followed by Nnamdi Nwulu and Esther Titilayo Akinlabi.
 - Corresponding-author contact details are to be supplied through the journal submission metadata.
 - The citation metadata identifies version 1.0.0; a persistent archival DOI remains pending.
 
