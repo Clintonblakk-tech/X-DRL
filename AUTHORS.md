@@ -1,8 +1,8 @@
 # Authors and contributions
 
-## Authors
+## Authors and author order
 
-1. **Clinton Jengoa Blakk** — corresponding author (proposed first author)  
+1. **Clinton Jengoa Blakk** — first author and corresponding author  
    ORCID: https://orcid.org/0009-0001-5978-1046  
    Department of Electrical and Electronic Engineering Science, University of Johannesburg, Johannesburg, South Africa.
 
@@ -14,7 +14,7 @@
    ORCID: https://orcid.org/0000-0002-9680-5510  
    Department of Mechanical Engineering, Walter Scott, Jr. College of Engineering, Colorado State University, Fort Collins, Colorado, USA.
 
-Author order and corresponding-author contact details should be confirmed by all authors before journal submission.
+The author order and corresponding-author designation reflect the author metadata approved for the X-DRL manuscript. Corresponding-author contact details should be supplied in the manuscript submission metadata rather than published here.
 
 ## CRediT contributions
 
