@@ -51,6 +51,7 @@
 - Confirmed that all three software copyright holders approved the MIT licence already published in the repository.
 
 ### Outstanding release requirements
+- Windows Python 3.12 support remains under validation. Added `requirements-windows-cpu-py312.in` as a candidate direct-dependency input; no Windows lock has been generated or validated yet. The earlier Windows WNTR compiled-extension import restriction remains unresolved, and Smart App Control was retained.
 - Validation of additional platform-specific environments (including Windows and CUDA configurations); the general `requirements.txt` remains unpinned.
 - Final benchmark-input redistribution and attribution decisions.
 - Final repository and citation metadata review.
