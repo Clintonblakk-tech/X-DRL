@@ -42,19 +42,35 @@ Verify the installation:
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
-### Other platforms / general installation
+### Windows 10/11: PowerShell installation (validation pending)
 
-For environments not covered by the Linux CPU lock (including Windows, macOS, and CUDA-enabled PyTorch), use a clean Python 3.12 environment and the provisional declarations:
+A Windows-specific candidate dependency input is provided as `requirements-windows-cpu-py312.in`. It records the intended direct package versions for Python 3.12, but a Windows lock file has not yet been generated or validated. Do not treat this input as a tested Windows environment.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
+For an initial installation check, use a clean PowerShell session from the repository root:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python -m pip check
 ```
 
-The general `requirements.txt` remains unpinned. The separate Linux CPU lock improves reproducibility for its stated platform but does not establish a tested cross-platform dependency matrix.
+Then run the regression checks:
+
+```powershell
+python -m compileall -q src benchmarks tests
+$env:PYTHONPATH = "src"
+python -m unittest discover -s tests -v
+```
+
+If PowerShell blocks virtual-environment activation, use `.\.venv\Scripts\python.exe` directly instead of changing the machine's execution policy. A previous Windows validation attempt encountered a Code Integrity restriction when importing WNTR's compiled extension; Smart App Control should remain enabled. A successful package installation alone is not sufficient: the WNTR import and all regression tests must pass before Windows can be described as validated.
+
+### macOS / other environments
+
+For macOS and other environments not covered by a platform-specific lock, use a clean Python 3.12 environment and the provisional declarations in `requirements.txt`. The general requirements file remains unpinned. No macOS validation or cross-platform dependency matrix is currently claimed.
+
+The Linux CPU lock improves reproducibility only for its stated platform; it does not establish a tested cross-platform dependency matrix.
 
 ## Tests
 
