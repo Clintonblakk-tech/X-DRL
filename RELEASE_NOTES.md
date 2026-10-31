@@ -96,3 +96,13 @@ The workspace remains a corrected research-software working revision and is not 
 
 ### Experimental scope clarification
 The checksum verification establishes file integrity, not experimental reproducibility. The Linux and Windows validation evidence remains limited to the environments, regression tests, and smoke tests documented above. No full historical 60-run benchmark was rerun, and no claim of full independent reproduction or validated leak- and contamination-detection performance is made.
+
+
+## Version 1.0.1 — metadata and archive-integrity maintenance release
+
+- Corrected the README release status and aligned the software title with the current manuscript title.
+- Corrected the copyright-holder spelling in the MIT licence from “Nnamdi Nnulu” to “Nnamdi Nwulu”.
+- Updated `CITATION.cff` to identify version 1.0.1 and the current software title.
+- Regenerated `SHA256SUMS.txt` from the exact files in this release archive.
+- No DQN or GA algorithm implementation, experimental configuration, historical result, or benchmark output was changed.
+- No new benchmark was run for this metadata-only maintenance release. Existing validation evidence and limitations remain unchanged.

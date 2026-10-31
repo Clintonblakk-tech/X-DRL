@@ -1,8 +1,8 @@
-# X-DRL: Explainable Deep Reinforcement Learning for Sensor Placement in Water Distribution Networks
+# X-DRL: A Python Framework for Deep Reinforcement Learning-Based Sensor Placement in Water Distribution Networks
 
 X-DRL is a Python research-software framework for investigating sensor-placement strategies in water distribution networks using deep reinforcement learning (DQN) and genetic algorithms (GA). It brings together network loading, graph-based coverage calculations, optimisation, benchmark execution, and supporting analysis utilities, with an emphasis on transparent experimental protocols and reproducibility.
 
-**Repository status:** Corrected research-software working revision 1.0.0; release preparation is in progress. Regression tests, clean Linux and Windows CPU environment checks, and reduced-size integration smoke tests have passed. The full historical benchmark and independent full-scale reproduction have not been completed. Do not describe this working revision as a fully independently reproduced release.
+**Repository status:** Version 1.0.1 is a metadata and archive-integrity maintenance release based on version 1.0.0. It corrects release documentation, software citation metadata, the spelling of a copyright holder's name, and the SHA-256 manifest. It does not change the DQN or GA algorithm implementations or add new experimental results. The validation evidence and limitations described below remain applicable. The full historical benchmark and independent full-scale reproduction have not been completed.
 
 ## Scope and contents
 
