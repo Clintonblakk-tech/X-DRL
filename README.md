@@ -2,16 +2,16 @@
 
 X-DRL is a Python research-software framework for investigating sensor-placement strategies in water distribution networks using deep reinforcement learning (DQN) and genetic algorithms (GA). It brings together network loading, graph-based coverage calculations, optimisation, benchmark execution, and supporting analysis utilities, with an emphasis on transparent experimental protocols and reproducibility.
 
-**Repository status:** corrected research-software working revision 1.0.0; release preparation is in progress. Regression tests, clean Linux environment checks, and reduced-size integration smoke tests have passed. The full historical benchmark and independent full-scale reproduction have not been completed. Do not describe this working revision as a fully independently reproduced release.
+**Repository status:** Corrected research-software working revision 1.0.0; release preparation is in progress. Regression tests, clean Linux and Windows CPU environment checks, and reduced-size integration smoke tests have passed. The full historical benchmark and independent full-scale reproduction have not been completed. Do not describe this working revision as a fully independently reproduced release.
 
 ## Scope and contents
 
 - `src/`: DQN and GA engines, configuration, and analysis utilities.
-- `benchmarks/`: historical and safer benchmark drivers, plus instructions for obtaining network input files.
-- `tests/`: regression tests.
-- `AUTHORS.md`: author information and CRediT contributions.
-- `CITATION.cff`: software citation metadata.
-- `RELEASE_NOTES.md`: summary of corrections and validation evidence.
+- `benchmarks/`: Historical and safer benchmark drivers, plus instructions for obtaining network input files.
+- `tests/`: Regression tests.
+- `AUTHORS.md`: Author information and CRediT contributions.
+- `CITATION.cff`: Software citation metadata.
+- `RELEASE_NOTES.md`: Summary of corrections and validation evidence.
 
 ## Experimental protocols
 
@@ -32,7 +32,7 @@ uv venv .venv --python 3.12
 uv pip install --python .venv/bin/python --require-hashes -r requirements-linux-cpu-py312.lock.txt
 ```
 
-The lock file includes the PyPI index and the official PyTorch CPU wheel index. It pins direct and transitive dependencies and includes hashes. The corresponding direct-dependency input is `requirements-linux-cpu-py312.in`; the lock was generated with uv for Python 3.12 on `x86_64-unknown-linux-gnu`.
+The Linux lock file includes the PyPI index and the official PyTorch CPU wheel index. It pins direct and transitive dependencies and includes hashes. The corresponding direct-dependency input is `requirements-linux-cpu-py312.in`; the lock was generated with uv for Python 3.12 on `x86_64-unknown-linux-gnu`.
 
 Verify the installation:
 
@@ -42,35 +42,37 @@ Verify the installation:
 PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
 ```
 
-### Windows 10/11: PowerShell installation (validation pending)
+### Windows 10/11: pinned CPU environment (Python 3.12)
 
-A Windows-specific candidate dependency input is provided as `requirements-windows-cpu-py312.in`. It records the intended direct package versions for Python 3.12, but a Windows lock file has not yet been generated or validated. Do not treat this input as a tested Windows environment.
+A hash-locked environment is provided for 64-bit Windows with Python 3.12 and CPU-only PyTorch. This platform-specific configuration was installed and tested during release preparation. It should not be used as a Linux, macOS, or CUDA installation specification.
 
-For an initial installation check, use a clean PowerShell session from the repository root:
+Install [uv](https://docs.astral.sh/uv/) first, then run from the repository root:
 
 ```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip check
+uv venv .venv --python 3.12
+uv pip install --python .\.venv\Scripts\python.exe --index-strategy unsafe-best-match --require-hashes -r requirements-windows-cpu-py312.lock.txt
 ```
 
-Then run the regression checks:
+The Windows lock file includes PyPI and the official PyTorch CPU wheel index. It pins direct and transitive dependencies and includes package hashes. The corresponding direct-dependency input is `requirements-windows-cpu-py312.in`; the lock was generated with uv for Python 3.12 on `x86_64-pc-windows-msvc`.
+
+The `--index-strategy unsafe-best-match` option allows uv to resolve packages across both declared indexes. Hash verification remains enabled through `--require-hashes`.
+
+Verify the installation:
 
 ```powershell
-python -m compileall -q src benchmarks tests
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -m compileall -q src benchmarks tests
 $env:PYTHONPATH = "src"
-python -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-If PowerShell blocks virtual-environment activation, use `.\.venv\Scripts\python.exe` directly instead of changing the machine's execution policy. A previous Windows validation attempt encountered a Code Integrity restriction when importing WNTR's compiled extension; Smart App Control should remain enabled. A successful package installation alone is not sufficient: the WNTR import and all regression tests must pass before Windows can be described as validated.
+Virtual-environment activation is not required. Running the environment's Python executable directly avoids changing the machine's PowerShell execution policy.
 
 ### macOS / other environments
 
 For macOS and other environments not covered by a platform-specific lock, use a clean Python 3.12 environment and the provisional declarations in `requirements.txt`. The general requirements file remains unpinned. No macOS validation or cross-platform dependency matrix is currently claimed.
 
-The Linux CPU lock improves reproducibility only for its stated platform; it does not establish a tested cross-platform dependency matrix.
+The Linux and Windows CPU locks improve reproducibility for their respective tested platforms. They do not establish a tested macOS or CUDA dependency matrix.
 
 ## Tests
 
@@ -81,19 +83,32 @@ python -m compileall -q src benchmarks tests
 python -m unittest discover -s tests -v
 ```
 
-Recorded clean Linux validation used WSL2, Ubuntu 26.04.1 LTS, and Python 3.12.16:
+**Recorded clean Linux validation** used WSL2, Ubuntu 26.04.1 LTS, and Python 3.12.16:
+
 - Python compilation completed successfully.
 - All 15 regression tests passed.
 - `pip check` reported no broken requirements.
 - Principal dependencies, including PyTorch, WNTR, NumPy, pandas, NetworkX, SciPy, Matplotlib, and SHAP, imported successfully.
+- The Linux CPU lock resolved and installed 33 packages in a clean isolated environment with hash verification.
 
-These tests do not constitute a full benchmark reproduction.
+**Recorded clean Windows validation** used Windows 10/11, Python 3.12.10, and a CPU-only PyTorch environment:
+
+- The Windows hash-locked environment installed all 34 resolved packages.
+- `pip check` reported no broken requirements.
+- PyTorch, WNTR, NumPy, pandas, NetworkX, SciPy, Matplotlib, and SHAP imported successfully.
+- Python compilation completed successfully.
+- All 15 regression tests passed.
+- A WNTR-bundled Net3 EPANET smoke test completed successfully, producing pressure and flow results.
+
+These checks establish installation, dependency consistency, regression-test execution, and limited integration evidence. They do not constitute a full benchmark reproduction.
 
 ## Integration and hydraulic simulation validation
 
 Controlled, reduced-size DQN and GA integration smoke tests completed successfully on Hanoi, Net3, and C-Town. Selected sensor counts respected the configured budgets. DQN output artifacts were checked for internal consistency, including checkpoints, metadata, evaluation states, and reward histories. GA sensor selections were checked against the corresponding network graphs.
 
-Separate WNTR/EPANET hydraulic simulation smoke tests successfully loaded and simulated all three network inputs.
+Separate WNTR/EPANET hydraulic simulation smoke tests successfully loaded and simulated all three network inputs in the Linux validation environment.
+
+A separate Windows EPANET smoke test used WNTR's bundled Net3 network. The one-hour simulation completed successfully, producing pressure and flow results. This Windows check was an integration smoke test, not a full benchmark or a leak/contamination detection experiment.
 
 **C-Town qualification:** WNTR reported that some C-Town curves were not assigned explicit curve types. Inspection established that curves 8–11 are referenced by the eleven pumps and identified as HEAD curves; curves 1–7 were imported with type=None. The original input was retained without modification. This warning does not directly affect the graph-based DQN and GA placement objectives, which use network topology, shortest-path coverage, and node centrality. However, successful loading and simulation alone do not establish complete hydraulic model fidelity.
 
@@ -132,8 +147,8 @@ The same independently defined metric and evaluation procedure must be applied t
 - Runtime provenance differences and distinct DQN reward protocols remain documented limitations.
 - The SHAP workflow is preliminary.
 - Do not claim complete independent reproduction or validated leak/contamination detection from the current tests alone.
-- A separate Windows Python 3.12 environment encountered a Windows Code Integrity Application Control restriction when importing WNTR's compiled extension. Windows Smart App Control was retained; WSL2 Linux was used for successful integration testing.
-- Dependencies remain unpinned; a fully specified, platform-aware environment is still required.
+- Linux and Windows CPU-specific Python 3.12 hashed lock files are provided and have passed clean installation checks.
+- The generic `requirements.txt` remains unpinned. No macOS or CUDA dependency validation is claimed.
 
 ## Licence
 
